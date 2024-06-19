@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drum Machine</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  <div id="root"></div>
+  <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/17.0.2/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+  <script type="text/babel">
+
+    const { useState } = React;
+
+    const DrumMachine = () => {
+      const [displayText, setDisplayText] = useState('');
+
+      const playSound = (soundId, displayText) => {
+        const audio = document.getElementById(soundId);
+        audio.currentTime = 0;
+        audio.play();
+        setDisplayText(displayText);
+      };
+
+      const handleKeyPress = (e) => {
+        const key = e.key.toUpperCase();
+        const audioElement = document.getElementById(key);
+        if (audioElement) {
+          audioElement.parentElement.click();
+        }
+      };
+
+      return (
+        <div id="drum-machine" className="container mt-5">
+          <div id="display" className="text-center bg-light p-3 mb-3">{displayText}</div>
+          <div className="row">
+            <div className="col-md-4">
+              <div className="drum-pad btn btn-primary" id="Q" onClick={() => playSound('Q-sound', 'Q')}>
+                Q
+                <audio id="Q-sound" className="clip" src="https://www.myinstants.com/media/sounds/punchy-kick-1.wav"></audio>
+              </div>
+            </div>
+            <div className="col-md-4">
+              <div className="drum-pad btn btn-primary" id="W" onClick={() => playSound('W-sound', 'W')}>
+                W
+                <audio id="W-sound" className="clip" src="https://www.myinstants.com/media/sounds/1rmtvSTcQv4b.mp3"></audio>
+              </div>
+            </div>
+            <div className="col-md-4">
+              <div className="drum-pad btn btn-primary" id="E" onClick={() => playSound('E-sound', 'E')}>
+                E
+                <audio id="E-sound" className="clip" src="https://www.myinstants.com/media/sounds/notificacion-simpson-para-celular.mp3"></audio>
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-4">
+              <div className="drum-pad btn btn-primary" id="A" onClick={() => playSound('A-sound', 'A')}>
+                A
+                <audio id="A-sound" className="clip" src="https://www.myinstants.com/media/sounds/punch-01.mp3"></audio>
+              </div>
+            </div>
+            <div className="col-md-4">
+              <div className="drum-pad btn btn-primary" id="S" onClick={() => playSound('S-sound', 'S')}>
+                S
+                <audio id="S-sound" className="clip" src="https://www.myinstants.com/media/sounds/ig9GpL7kTiEW.128.mp3"></audio>
+              </div>
+            </div>
+            <div className="col-md-4">
+              <div className="drum-pad btn btn-primary" id="D" onClick={() => playSound('D-sound', 'D')}>
+                D
+                <audio id="D-sound" className="clip" src="https://www.myinstants.com/media/sounds/halo-2-needler-01.mp3"></audio>
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-4">
+              <div className="drum-pad btn btn-primary" id="Z" onClick={() => playSound('Z-sound', 'Z')}>
+                Z
+                <audio id="Z-sound" className="clip" src="https://www.myinstants.com/media/sounds/tdnbb.mp3"></audio>
+              </div>
+            </div>
+            <div className="col-md-4">
+              <div className="drum-pad btn btn-primary" id="X" onClick={() => playSound('X-sound', 'X')}>
+                X
+                <audio id="X-sound" className="clip" src="https://www.myinstants.com/media/sounds/windowssounds.mp3"></audio>
+              </div>
+            </div>
+            <div className="col-md-4">
+              <div className="drum-pad btn btn-primary" id="C" onClick={() => playSound('C-sound', 'C')}>
+                C
+                <audio id="C-sound" className="clip" src="https://www.myinstants.com/media/sounds/reminder_5.mp3"></audio>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    };
+
+    document.addEventListener('keydown', DrumMachine.handleKeyPress);
+
+    ReactDOM.render(<DrumMachine />, document.getElementById('root'));
+
+  </script>
+</body>
+</html>
